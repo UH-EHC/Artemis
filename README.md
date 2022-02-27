@@ -1,6 +1,6 @@
 # Artemis
 
-## ENVIRONMENTS
+## ENVIRONMENT
 
 ```python >= 3.8```, not tested with older versions
 
@@ -8,6 +8,7 @@
 
 
 ## HOW TO RUN
+
 ```scrapy crawl artemis```
 
 ### nolog version：
