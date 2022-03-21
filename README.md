@@ -9,8 +9,4 @@
 
 ## HOW TO RUN
 
-```scrapy crawl artemis```
-
-### nolog version：
-```scrapy crawl --nolog artemis```
-
+```to be determined```
