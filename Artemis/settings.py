@@ -22,6 +22,8 @@ NEWSPIDER_MODULE = 'Artemis.spiders'
 ROBOTSTXT_OBEY = True
 
 
+# nmap command option
+NMAP_option = 0
 # MAX LIMIT for domains
 MAX_DOMAINS = 1
 # port range start

@@ -9,7 +9,7 @@ import sys
 class Artemis_spider(Spider):
     name = 'artemis'
     visited_domains = 0
-    start_urls = ['https://ethicalhacking.club']
+    start_urls = ['http://scanme.nmap.org/']
 
     def parse(self, response):
         le = LinkExtractor()
