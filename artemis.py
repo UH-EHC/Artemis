@@ -1,6 +1,10 @@
 #!/bin/python
-import sys, os, argparse, hashlib, time, nmap
-from responses import target
+import argparse
+import nmap
+# import os
+# import sys
+import textwrap
+# import time
 
 
 def parse_result(result):
@@ -12,18 +16,20 @@ def parse_result(result):
     for port_num in tcp_info:
         print('{}: {}'.format(port_num, tcp_info[port_num]))
     # print()
-
-    
-    
-    
+   
     pass
     
 def main():
-    parser = argparse.ArgumentParser(description='Port Scanner')
+    parser = argparse.ArgumentParser(description='Artemis - Port Scanner, Vulnerability Analysis',
+                                     formatter_class=argparse.RawDescriptionHelpFormatter,
+                                     epilog=textwrap.dedent('''Example: 
+    
+    artemis.py -t 10.0.0.1 -p 5555 -s service
+    '''))
 
-    parser.add_argument('-s', dest='_scantype',type=str, help='type of scan tp run (service/os/vuln/safe)', default='service')
-    parser.add_argument('-t', dest='_target', type=str, help ='target IP', default='127.0.0.1')
-    parser.add_argument('-p', dest='_portrange',type=str, help='port range', default='1-500')
+    parser.add_argument('-s', dest='--scantype',type=str, help='type of scan tp run (service/os/vuln/safe)', default='service')
+    parser.add_argument('-t', dest='--target', type=str, help ='target IP', default='127.0.0.1')
+    parser.add_argument('-p', dest='--portrange',type=str, help='port range', default='1-500')
     
     args = parser.parse_args()
 
