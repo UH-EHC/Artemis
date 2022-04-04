@@ -27,9 +27,9 @@ def main():
     artemis.py -t 10.0.0.1 -p 5555 -s service
     '''))
 
-    parser.add_argument('-s', dest='--scantype',type=str, help='type of scan tp run (service/os/vuln/safe)', default='service')
-    parser.add_argument('-t', dest='--target', type=str, help ='target IP', default='127.0.0.1')
-    parser.add_argument('-p', dest='--portrange',type=str, help='port range', default='1-500')
+    parser.add_argument('-s', dest='_scantype',type=str, help='type of scan tp run (service/os/vuln/safe)', default='service')
+    parser.add_argument('-t', dest='_target', type=str, help ='target IP', default='127.0.0.1')
+    parser.add_argument('-p', dest='_portrange',type=str, help='port range', default='1-500')
     
     args = parser.parse_args()
 
