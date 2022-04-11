@@ -7,14 +7,26 @@ import textwrap
 # import time
 
 
-def parse_result(result):
-    print(result.keys())
-    key = list(result['scan'].keys())[0]
-    # print(result['scan']['169.46.123.165'].keys())
-    # print(result['scan'][key]['tcp'])
-    tcp_info = result['scan'][key]['tcp']
-    for port_num in tcp_info:
-        print('{}: {}'.format(port_num, tcp_info[port_num]))
+def parse_result(nmScan):
+    # print(result.keys())
+    for host in nmScan.all_hosts():
+        print('----------------------------------------------------')
+        print('Host : %s (%s)' % (host, nmScan[host].hostname()))
+        print('State : %s' % nmScan[host].state())
+        for proto in nmScan[host].all_protocols():
+            print('----------')
+            print('Protocol : %s' % proto)
+
+            lport = nmScan[host][proto].keys()
+            # lport.sort()
+            for port in lport:
+                print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
+    # key = list(result['scan'].keys())[0]
+    # # print(result['scan']['169.46.123.165'].keys())
+    # # print(result['scan'][key]['tcp'])
+    # tcp_info = result['scan'][key]['tcp']
+    # for port_num in tcp_info:
+    #     print('{}: {}'.format(port_num, tcp_info[port_num]))
     # print()
    
     pass
@@ -49,9 +61,11 @@ def main():
         print('Invald scan type. Valid scans: ( aggressive | quiet | default )')
 
     print(f'Executing {scantype} scan')
-    result = nmScan.scan(target, port_range, arguments=params, sudo=True)
-    print(result)
-    result = parse_result(result)    
+    nmScan.scan(target, port_range, arguments=params, sudo=True)
+    # result = nmScan.scan(target, port_range, arguments=params, sudo=True)
+    # print(result)
+    # result = parse_result()
+    parse_result(nmScan)     
 
     
 
