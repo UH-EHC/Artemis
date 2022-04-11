@@ -27,9 +27,9 @@ def main():
     artemis.py -t 10.0.0.1 -p 5555 -s service
     '''))
 
-    parser.add_argument('-s', dest='_scantype',type=str, help='type of scan tp run (aggressive/quiet/default)', default='default')
-    parser.add_argument('-t', dest='_target', type=str, help ='target IP', default='127.0.0.1')
-    parser.add_argument('-p', dest='_portrange',type=str, help='port range', default='1-500')
+    parser.add_argument('-s', dest='_scantype', metavar='', type=str, help='type of scan to run ( aggressive | quiet | default )', default='default')
+    parser.add_argument('-t', dest='_target', metavar='', type=str, help ='target IP (default = 127.0.0.1)', default='127.0.0.1')
+    parser.add_argument('-p', dest='_portrange', metavar='', type=str, help='port range (default = 1-500)', default='1-500')
     
     args = parser.parse_args()
 
@@ -46,7 +46,7 @@ def main():
     elif scantype == 'default':
         params = '-sV -sC'
     else:
-        print('Invald scan type. Valid scans: (aggressive/quiet/default)')
+        print('Invald scan type. Valid scans: ( aggressive | quiet | default )')
 
     print(f'Executing {scantype} scan')
     result = nmScan.scan(target, port_range, arguments=params, sudo=True)
