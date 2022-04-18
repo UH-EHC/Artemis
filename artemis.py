@@ -12,23 +12,24 @@ def parse_result(nmScan, scantype):
         host = nmScan[host]
         # osresults = host['osmatch']
         print('----------------------------------------------------')
-        print('Host : %s (%s)' % (host, host.hostname()))
+        print('Host : %s' % host.hostname())
         print('State : %s' % host.state())
-        # for i, (j,k) in enumerate(host.items()):
-        #     print(i, j, k)
-        # print('OS : %s' % host['osmatch'])
+
         if 'osmatch' in host:
-            print(host)
-            print("OS Name: %s" % host['osmatch'])
-        # print("Kernel version: %s" % host[0]['osclass'][0]['cpe'][0])
+            print('----------')
+            if len(host['osmatch']) >= 2:
+                print('Multiple OS matches. Results may be innaccurate. nmap requires at least one open and one closed port to detect OS.')
+            print("OS Name : %s" % host['osmatch'][0]['name'])
+            print("OS CPE : %s" % host['osmatch'][0]['osclass'][0]['cpe'][0])
+
         for proto in host.all_protocols():
             print('----------')
             print('Protocol : %s' % proto)
-
             lport = host[proto].keys()
             # lport.sort()
             for port in lport:
                 print ('port : %s\tstate : %s' % (port, host[proto][port]['state']))
+
     # key = list(result['scan'].keys())[0]
     # # print(result['scan']['169.46.123.165'].keys())
     # # print(result['scan'][key]['tcp'])
