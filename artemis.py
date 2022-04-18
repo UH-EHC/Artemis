@@ -17,7 +17,7 @@ def parse_result(nmScan, scantype):
         # for i, (j,k) in enumerate(host.items()):
         #     print(i, j, k)
         # print('OS : %s' % host['osmatch'])
-        if host['osmatch']:
+        if 'osmatch' in host:
             print(host)
             print("OS Name: %s" % host['osmatch'])
         # print("Kernel version: %s" % host[0]['osclass'][0]['cpe'][0])
