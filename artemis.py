@@ -8,28 +8,27 @@ import textwrap
 
 
 def parse_result(nmScan, scantype):
-    # print(result.keys())
     for host in nmScan.all_hosts():
-        # osresults = nmScan[host]['osmatch']
+        host = nmScan[host]
+        # osresults = host['osmatch']
         print('----------------------------------------------------')
-        print('Host : %s (%s)' % (host, nmScan[host].hostname()))
-        print('State : %s' % nmScan[host].state())
-        dict = nmScan[host]
-        # for i, (j,k) in enumerate(dict.items()):
+        print('Host : %s (%s)' % (host, host.hostname()))
+        print('State : %s' % host.state())
+        # for i, (j,k) in enumerate(host.items()):
         #     print(i, j, k)
-        # print('OS : %s' % dict['osmatch'])
-        if dict['osmatch']:
-            print(dict)
-            print("OS Name: %s" % dict['osmatch'])
-        # print("Kernel version: %s" % dict[0]['osclass'][0]['cpe'][0])
-        for proto in nmScan[host].all_protocols():
+        # print('OS : %s' % host['osmatch'])
+        if host['osmatch']:
+            print(host)
+            print("OS Name: %s" % host['osmatch'])
+        # print("Kernel version: %s" % host[0]['osclass'][0]['cpe'][0])
+        for proto in host.all_protocols():
             print('----------')
             print('Protocol : %s' % proto)
 
-            lport = nmScan[host][proto].keys()
+            lport = host[proto].keys()
             # lport.sort()
             for port in lport:
-                print ('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
+                print ('port : %s\tstate : %s' % (port, host[proto][port]['state']))
     # key = list(result['scan'].keys())[0]
     # # print(result['scan']['169.46.123.165'].keys())
     # # print(result['scan'][key]['tcp'])
