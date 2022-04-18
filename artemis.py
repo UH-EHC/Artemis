@@ -45,12 +45,12 @@ def main():
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
                                      epilog=textwrap.dedent('''Example: 
     
-    artemis.py -t 10.0.0.1 -p 5555 -s service
+    artemis.py -t 127.0.0.1 -p 80 -s default
     '''))
 
     parser.add_argument('-s', dest='_scantype', metavar='', type=str, help='type of scan to run ( aggressive | quiet | default )', default='default')
     parser.add_argument('-t', dest='_target', metavar='', type=str, help ='target IP (default = 127.0.0.1)', default='127.0.0.1')
-    parser.add_argument('-p', dest='_portrange', metavar='', type=str, help='port range (default = 1-500)', default='1-500')
+    parser.add_argument('-p', dest='_portrange', metavar='', type=str, help='port range (default = 80)', default='80')
     
     args = parser.parse_args()
 
